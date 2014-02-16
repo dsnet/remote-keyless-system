@@ -182,7 +182,7 @@ void receive_code(uint8_t* data) {
     // Blocking receive
     while (1) {
         // Poll for frame marker
-        while (man_receive(&err) != FRAME_MARK && !err) {}
+        while (man_receive(&err) != FRAME_MARK && err) {}
 
         // Get the 6 byte data message
         ok = 1;
