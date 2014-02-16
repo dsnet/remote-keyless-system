@@ -1,0 +1,64 @@
+[DeviceName]
+Value=P16F877A
+[DeviceClock]
+Value=8
+[MainUnit]
+Value=
+[DeviceFlags]
+Count=6
+Value0=_CP_OFF = $3FFF
+Value1=_WRT_OFF = $3FFF
+Value2=_LVP_OFF = $3F7F
+Value3=_PWRTE_ON = $3FF7
+Value4=_WDT_OFF = $3FFB
+Value5=_HS_OSC = $3FFE
+[BuildType]
+bType=0
+[ProjectFiles]
+Count=1
+Value0=receiver.c
+[HeaderFiles]
+Count=0
+[ObjLibFiles]
+Count=0
+[PLDFiles]
+Count=0
+[EEPROMinfo]
+isused=0
+[IncludePath]
+Count=0
+[SearchPath]
+Count=0
+[DEVICE]
+Name=Unknown
+Clock=10000000
+[FILES]
+Count=0
+[BINARIES]
+Count=0
+[IMAGES]
+Count=0
+[OPENED_FILES]
+Count=0
+[OTHER_FILES]
+Count=0
+[SEARCH_PATH]
+Count=0
+[HEADER_PATH]
+Count=0
+[HEADERS]
+Count=0
+[PLDS]
+Count=0
+[Useses]
+Count=0
+[MEMORY_MODEL]
+Value=0
+[BUILD_TYPE]
+Value=0
+[ACTIVE_TAB]
+Value=
+[USE_EEPROM]
+Value=0
+[EEPROM_DEFINITION]
+Value=

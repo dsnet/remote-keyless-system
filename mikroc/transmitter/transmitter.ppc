@@ -1,0 +1,34 @@
+[DeviceName]
+Value=P12F683
+[DeviceClock]
+Value=8
+[MainUnit]
+Value=
+[DeviceFlags]
+Count=9
+Value0=_FCMEN_OFF = $37FF
+Value1=_IESO_OFF = $3BFF
+Value2=_BOD_OFF = $3CFF
+Value3=_CPD_ON = $3F7F
+Value4=_CP_ON = $3FBF
+Value5=_MCLRE_OFF = $3FDF
+Value6=_PWRTE_ON = $3FEF
+Value7=_WDT_OFF = $3FF7
+Value8=_INTRC_OSC_NOCLKOUT = $3FFC
+[BuildType]
+bType=0
+[ProjectFiles]
+Count=1
+Value0=transmitter.c
+[HeaderFiles]
+Count=0
+[ObjLibFiles]
+Count=0
+[PLDFiles]
+Count=0
+[EEPROMinfo]
+isused=0
+[IncludePath]
+Count=0
+[SearchPath]
+Count=0
