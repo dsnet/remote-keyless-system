@@ -17,7 +17,7 @@ Description:
 Configuration:
     Microcontroller:   PIC16F877A
     Oscillator:        HS, 8.00 MHz
-    External Modules:  RF 434 MHz transmitter, 4x20 character LCD
+    External Modules:  RF 434 MHz receiver, 4x20 character LCD
     Compiler:          MikroC 8.0
 Notes:
     A variation of the BlowFish cipher is used in this project. The cipher's
@@ -59,7 +59,7 @@ const uint8_t FRAME_MARK = 0b10010110;
 
 // The rolling code maintains a moving window that protects against replay
 // attacks. However, there is the possibility that the transmitter and receiver
-// can get out of sync if the transmitter increments its rolling code too often
+// can get out of sync if the remote increments its rolling code too often
 // without the receiver ever getting any messages. Thus, there is a window where
 // future codes are acceptable by the receiver.
 const int ROLLING_WINDOW = 0x0400;
