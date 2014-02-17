@@ -21,9 +21,9 @@
 ## File Structure ##
 
 * **board**: Circuit board schematics or PCB layouts
-* **media**: Multimedia files such as photographs or decals
+* **media**: Multimedia files such as photographs or videos
 * **mikroc**: C sub-projects targeted at the microcontroller realm
 * **mikroc/receiver**: Project for receiving signals and unlocking the door
-* **mikroc/transmitter**: Project for transmitting encrypted signals
+* **mikroc/transmitter**: Project for transmitting signals
 * **mikroc/crypto**: Library for performing BlowFish32 encryption
 * **mikroc/key_gen**: Program to generate BlowFish32 subkeys from a seed key
