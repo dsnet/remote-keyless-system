@@ -4,7 +4,7 @@
 
 /*
 Project name:
-    Remote Keyless System - Transmitter
+    Remote Keyless System - Receiver
 Description:
     This is the receiver part of the remote keyless system project. The receiver
     continuously waits for a signal from the transmitter. The messages need to
@@ -68,9 +68,6 @@ const int ROLLING_WINDOW = 0x0400;
 const short MAX_CHANS = 16;
 const uint8_t ADDRESS_CODE = 0x00;
 const uint8_t ADDRESS_STATE = MAX_CHANS*4;
-
-// Maximum number of times to try unlatching the bolt.
-const short MAX_BOLT_RETRY = 100;
 
 
 void manchester_synchronize();
@@ -182,7 +179,7 @@ void receive_code(uint8_t* data) {
     // Blocking receive
     while (1) {
         // Poll for frame marker
-        while (man_receive(&err) != FRAME_MARK && err) {}
+        while (man_receive(&err) != FRAME_MARK || err) {}
 
         // Get the 6 byte data message
         ok = 1;
@@ -264,7 +261,7 @@ void process_load(uint8_t* data, uint32_t code, short chan) {
     lcd_const(2, 1, text_lbl1);
     lcd_hexdump(2, 9, data, 6);
     lcd_const(3, 1, text_lbl2);
-    lcd_hexdump(3, 13, (uint8_t*)code, 4);
+    lcd_hexdump(3, 13, (uint8_t*)(&code), 4);
     lcd_const(4, 1, text_lbl3);
     lcd_chr(4, 19, '0');
     lcd_hex(4, 20, chan);
@@ -291,7 +288,7 @@ void process_store(uint8_t* data, uint32_t code, short chan) {
     lcd_chr(1, 15, '1');
     lcd_const(2, 4, text_ttl2);
     lcd_const(3, 1, text_lbl2);
-    lcd_hexdump(3, 13, (uint8_t*)code, 4);
+    lcd_hexdump(3, 13, (uint8_t*)(&code), 4);
     lcd_const(4, 1, text_lbl3);
     lcd_chr(4, 19, '0');
     lcd_hex(4, 20, chan);
@@ -357,9 +354,10 @@ void process_reset(short chan) {
 }
 
 
-// Active the drive motors to unlock the bolt and relock the bolt.
+// Activate the drive motors to unlock the bolt and relock the bolt.
 void bolt_unlock() {
-    short num_retry = 0;
+    const int MAX_BOLT_RETRY = 250;
+    int num_retry = 0;
 
     // If the latch is not already open
     if (PORTD.F2 == 0) {
@@ -412,7 +410,6 @@ uint32_t read_channel_code(short chan) {
         delay_ms(20);
         _code[idx] = eeprom_read(offset + idx);
     }
-
     return code;
 }
 
@@ -441,6 +438,7 @@ void write_channel_code(short chan, uint32_t code) {
 void lcd_const(short row, short col, const char* data) {
     char buf[20];
     short idx = 0;
+
     do {
         buf[idx] = data[idx];
     } while(buf[idx++]);
@@ -457,12 +455,9 @@ void lcd_hex(short row, short col, short val) {
 // Wrapper around lcd_out() that hexdumps the num bytes in data.
 void lcd_hexdump(short row, short col, uint8_t* data, short num) {
     short idx;
-    uint8_t hex_lo, hex_hi;
 
     for (idx = 0; idx < num; idx++) {
-        lcd_hex(row, col, (data[idx] >> 0) & 0x0F);
-        col++;
-        lcd_hex(row, col, (data[idx] >> 4) & 0x0F);
-        col++;
+        lcd_hex(row, col++, (data[idx] >> 4) & 0x0F);
+        lcd_hex(row, col++, (data[idx] >> 0) & 0x0F);
     }
 }

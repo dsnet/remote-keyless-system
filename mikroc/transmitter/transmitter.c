@@ -39,10 +39,10 @@ const uint8_t CHAN_NUM = 0x00;
 const uint8_t FRAME_MARK = 0b10010110;
 
 
-uint32_t read_code();
-void write_code(uint32_t code);
 uint32_t transmit_code(uint32_t code, short cnt);
 short valid_message(uint8_t* data, short num);
+uint32_t read_code();
+void write_code(uint32_t code);
 
 
 //The main function
@@ -89,33 +89,6 @@ void main() {
 
         // Clear interrupt flag
         INTCON.INTF = 0;
-    }
-}
-
-
-// Read the current rolling code from EPPROM in native endianness.
-uint32_t read_code() {
-    short idx;
-    uint32_t code;
-    uint8_t* _code = (uint8_t*)(&code);
-
-    for (idx = 0; idx < 4; idx++) {
-        delay_ms(20);
-        _code[idx] = eeprom_read(idx);
-    }
-
-    return code;
-}
-
-
-// Write the given rolling code to EPPROM in native endianness.
-void write_code(uint32_t code) {
-    short idx;
-    uint8_t* _code = (uint8_t*)(&code);
-
-    for (idx = 0; idx < 4; idx++) {
-        delay_ms(20);
-        eeprom_write(idx, _code[idx]);
     }
 }
 
@@ -172,4 +145,30 @@ short valid_message(uint8_t* data, short num) {
         if ((*data) == FRAME_MARK)
             return 0;
     return 1;
+}
+
+
+// Read the current rolling code from EPPROM in native endianness.
+uint32_t read_code() {
+    short idx;
+    uint32_t code;
+    uint8_t* _code = (uint8_t*)(&code);
+
+    for (idx = 0; idx < 4; idx++) {
+        delay_ms(20);
+        _code[idx] = eeprom_read(idx);
+    }
+    return code;
+}
+
+
+// Write the given rolling code to EPPROM in native endianness.
+void write_code(uint32_t code) {
+    short idx;
+    uint8_t* _code = (uint8_t*)(&code);
+
+    for (idx = 0; idx < 4; idx++) {
+        delay_ms(20);
+        eeprom_write(idx, _code[idx]);
+    }
 }
