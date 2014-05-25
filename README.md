@@ -2,6 +2,10 @@
 
 ## Introduction ##
 
+Ever get tired of fumbling around your wallet looking for your room card key? Worse yet, realizing that you left the key in your room to begin with? What if you could control access to your room wirelessly? Now you can!
+
+This remote keyless entry system consists of a wireless receiver mechanism that listens for encrypted passcodes sent by individual transmitter fobs.
+
 [![system-demo](http://code.digital-static.net/remote-keyless-system/raw/tip/media/system-full.jpg)](http://www.youtube.com/watch?v=MCNyj44IE78)
 (Click above image for demonstration video)
 
