@@ -6,7 +6,7 @@ Ever get tired of fumbling around your wallet looking for your room card key? Wo
 
 This remote keyless entry system consists of a wireless receiver mechanism that listens for passcodes sent by individual transmitter fobs. The transmitters send codes in encrypted form with a rolling code. This prevents any form of replay attack.
 
-[![system-demo](http://bitbucket.org/rawr/remote-keyless-system/raw/tip/media/system-full.jpg)](http://www.youtube.com/watch?v=MCNyj44IE78)
+[![system-demo](media/system-full.jpg)](http://www.youtube.com/watch?v=MCNyj44IE78)
 (Click above image for demonstration video)
 
 
@@ -14,8 +14,7 @@ This remote keyless entry system consists of a wireless receiver mechanism that 
 
 *To be continued*
 
-
-## File Structure ##
+## Folder Structure ##
 
 * **board**: Circuit board schematics or PCB layouts
 * **media**: Multimedia files such as photographs or videos
